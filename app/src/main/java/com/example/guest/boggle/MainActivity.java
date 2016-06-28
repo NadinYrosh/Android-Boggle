@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -20,7 +21,9 @@ public class MainActivity extends AppCompatActivity {
     public static final String TAG = MainActivity.class.getSimpleName();
 
     @Bind(R.id.newBoggleButton) Button mNewBoggleButton;
+    @Bind(R.id.submit) Button mSubmitButton;
     @Bind(R.id.boggleOutput) TextView mBoggleOutput;
+    @Bind(R.id.input) EditText mInput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +54,16 @@ public class MainActivity extends AppCompatActivity {
 
                 //print array to setText boggleOutput
                 mBoggleOutput.setText(boggle);
+            }
+        });
+
+        mSubmitButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                String userGuess = mInput.getText().toString();
+                String boggleTemp = mBoggleOutput.getText().toString();
+
+                Log.d(TAG, "userGuess: " + userGuess + "\nboggleTemp: " + boggleTemp);
             }
         });
     }
